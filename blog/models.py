@@ -12,3 +12,5 @@ class Blog(models.Model):
     def publish_date_pretty(self):
         return self.publish_date.strftime("%b %d %Y")
 
+    def body_short(self):
+        return self.body[:300] + '...'

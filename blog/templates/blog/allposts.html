@@ -1,41 +1,32 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block head %}
-      <link href="css/blog.css" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 {% endblock %}
 
 {% block content %}
+    <main role="main" class="container">
 
-<main role="main" class="container">
+         <h1 class="text-center pt=3">Welcome to my blog</h1>
+         <br />
+         <br />
+         <h2>Lastest Posts</h2>
+         <hr />
+         <br />
 
- <h1 class="text-center pt=3">Welcome to my blog</h1>
-    <br />
-    <br />
-    <h2>Lastest Posts</h2>
-    <hr />
-    <br />
-
-  <div class="row">
-    <div class="col-md-8 blog-main">
-
-      {% for post in posts.all %}
-
-        <div class="blog-post">
-          <h2 class="blog-post-title">{{ post.title }}</h2>
-          <p class="blog-post-meta">{{ post.publish_date_pretty }}</p>
-          <img class="img-fluid" src="{{ post.image.url }}" height="200" width="200"/>
-
-          <p>{{ post.body }}</p>
-        </div><!-- /.blog-post -->
-
-      {% endfor %}
-
-
-
-    </div><!-- /.blog-main -->
-
-  </div><!-- /.row -->
-
-</main><!-- /.container -->
+          <div class="row">
+            <div class="col-md-8 blog-main">
+              {% for post in posts.all %}
+                <div class="blog-post">
+                  <h2 class="blog-post-title">{{ post.title }}</h2>
+                  <p class="blog-post-meta">{{ post.publish_date_pretty }}</p>
+                  <img class="img-fluid" src="{{ post.image.url }}" height="200" width="200"/>
+                  <p class="text-break">{{ post.body_short }}</p>
+                </div><!-- /.blog-post -->
+              {% endfor %}
+            </div><!-- /.blog-main -->
+          </div><!-- /.row -->
+    </main><!-- /.container -->
 
 {% endblock %}
